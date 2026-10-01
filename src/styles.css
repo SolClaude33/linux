@@ -315,17 +315,19 @@ button svg, a svg { width: 19px; height: 19px; pointer-events: none; }
 
 .system-popover { position: absolute; z-index: 10001; top: 43px; right: 8px; width: 240px; padding: 10px; border: 1px solid var(--line-strong); border-radius: 10px; background: rgba(39,39,36,.96); box-shadow: 0 18px 45px rgba(0,0,0,.42); backdrop-filter: blur(18px); }.system-popover > div, .system-popover button { width: 100%; display: flex; align-items: center; gap: 11px; padding: 10px; }.system-popover > div > span { display: flex; flex-direction: column; gap: 2px; }.system-popover small { color: var(--muted); font-size: 10px; }.system-popover button { min-height: 42px; border: 0; border-radius: 6px; background: transparent; cursor: pointer; }.system-popover button:hover { background: rgba(255,255,255,.08); }
 .date-popover { position: absolute; z-index: 10001; top: 43px; left: 50%; width: min(320px, calc(100vw - 20px)); padding: 22px; border: 1px solid var(--line-strong); border-radius: 10px; background: rgba(39,39,36,.97); box-shadow: 0 18px 45px rgba(0,0,0,.42); backdrop-filter: blur(18px); transform: translateX(-50%); text-align: center; }.date-popover p { margin: 0 0 7px; color: var(--muted); font-size: 12px; }.date-popover strong { display: block; color: var(--amber-bright); font-size: 36px; letter-spacing: -.04em; }.date-popover small { color: #8c8a82; }
-.mascot-guide { position: fixed; z-index: 9200; right: 18px; bottom: 18px; display: flex; align-items: flex-end; gap: 8px; pointer-events: none; }
-.mascot-guide__bubble { position: relative; width: min(270px, calc(100vw - 150px)); min-height: 92px; padding: 18px 54px 16px 18px; border: 1px solid rgba(255, 209, 102, .42); border-radius: 14px 14px 4px 14px; background: rgba(30, 30, 27, .96); box-shadow: 0 16px 38px rgba(0, 0, 0, .38); color: var(--text); pointer-events: auto; transform-origin: right bottom; transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease; }
-.mascot-guide__bubble::after { content: ""; position: absolute; right: -8px; bottom: 16px; width: 14px; height: 14px; border-top: 1px solid rgba(255, 209, 102, .42); border-right: 1px solid rgba(255, 209, 102, .42); background: #1e1e1b; transform: rotate(45deg); }
+.mascot-guide { --guide-mascot-width: 140px; --guide-mascot-height: 144px; --guide-bubble-lift: 62px; --guide-tail-length: 46px; --guide-tail-width: 22px; --guide-tail-bottom: 13px; --guide-border: rgba(255, 209, 102, .42); position: fixed; z-index: 9200; right: 18px; bottom: 18px; display: flex; align-items: flex-end; gap: 8px; pointer-events: none; }
+.mascot-guide__bubble { position: relative; width: min(270px, calc(100vw - 180px)); min-height: 92px; margin-bottom: var(--guide-bubble-lift); padding: 18px 54px 16px 18px; border: 1px solid var(--guide-border); border-radius: 14px 14px 4px 14px; background: rgba(30, 30, 27, .96); box-shadow: 0 16px 38px rgba(0, 0, 0, .38); color: var(--text); pointer-events: auto; transform-origin: right center; transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease; }
+.mascot-guide__bubble::before, .mascot-guide__bubble::after { content: ""; position: absolute; clip-path: polygon(0 0, 100% 50%, 0 100%); pointer-events: none; }
+.mascot-guide__bubble::before { right: calc(0px - var(--guide-tail-length) - 2px); bottom: calc(var(--guide-tail-bottom) - 1px); width: calc(var(--guide-tail-length) + 3px); height: calc(var(--guide-tail-width) + 2px); background: var(--guide-border); }
+.mascot-guide__bubble::after { right: calc(0px - var(--guide-tail-length)); bottom: var(--guide-tail-bottom); width: var(--guide-tail-length); height: var(--guide-tail-width); background: #1e1e1b; }
 .mascot-guide__label { color: var(--amber); font-size: 9px; font-weight: 850; letter-spacing: .18em; }
 .mascot-guide__bubble p { margin: 7px 0 0; color: #e0ddd4; font-size: 12px; line-height: 1.5; }
 .mascot-guide__bubble button { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: 7px; background: transparent; cursor: pointer; }
 .mascot-guide__bubble button:hover { background: rgba(255, 255, 255, .09); }
-.mascot-guide__mascot { width: 104px; height: 118px; padding: 0; border: 0; background: transparent; pointer-events: auto; cursor: pointer; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .28)); }
+.mascot-guide__mascot { width: var(--guide-mascot-width); height: var(--guide-mascot-height); padding: 0; border: 0; background: transparent; pointer-events: auto; cursor: pointer; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .28)); }
 .mascot-guide__mascot img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
 .mascot-guide.is-collapsed .mascot-guide__bubble { opacity: 0; visibility: hidden; transform: translateY(8px) scale(.96); pointer-events: none; }
-.desktop.guide-visible .window.is-maximized .window__content { padding-bottom: 130px; }
+.desktop.guide-visible .window.is-maximized .window__content { padding-bottom: 190px; }
 .toast { position: absolute; z-index: 11000; left: 50%; bottom: 24px; padding: 10px 16px; border: 1px solid var(--line-strong); border-radius: 999px; background: #292926; box-shadow: 0 10px 26px rgba(0,0,0,.4); opacity: 0; transform: translate(-50%, 12px); pointer-events: none; transition: opacity 160ms ease, transform 160ms ease; font-size: 12px; }.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
 @keyframes overview-in { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
@@ -339,9 +341,9 @@ button svg, a svg { width: 19px; height: 19px; pointer-events: none; }
 }
 
 @media (min-width: 768px) and (max-width: 1100px) {
+  .mascot-guide { --guide-mascot-width: 110px; --guide-mascot-height: 116px; --guide-bubble-lift: 48px; --guide-tail-length: 36px; --guide-tail-width: 20px; --guide-tail-bottom: 12px; }
   .mascot-guide__bubble { width: 220px; }
-  .mascot-guide__mascot { width: 78px; height: 92px; }
-  .desktop.guide-visible .window.is-focused .window__content { padding-bottom: 112px; }
+  .desktop.guide-visible .window.is-focused .window__content { padding-bottom: 165px; }
 }
 
 @media (max-width: 767px) {
@@ -359,13 +361,12 @@ button svg, a svg { width: 19px; height: 19px; pointer-events: none; }
   .settings-view { display: block; }.settings-nav { display: none; }.settings-main { padding: 24px 18px; }.settings-main h2 { font-size: 31px; }.wallpaper-options { grid-template-columns: 1fr; }.wallpaper-choice { display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: 10px; }.wallpaper-choice__preview { height: 58px; margin: 0; }
   .activities { padding: 20px 14px; }.activities__bar { grid-template-columns: 1fr auto; }.activities__bar h2 { display: none; }.search-field { min-width: 0; }.activities__content { margin-top: 32px; }.app-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }.app-tile { min-height: 110px; }.app-tile > span { width: 54px; height: 54px; }
   .system-popover { top: 48px; right: 5px; }
-  .mascot-guide { right: 8px; bottom: 78px; gap: 3px; }
-  .mascot-guide__bubble { width: min(218px, calc(100vw - 92px)); min-height: 0; padding: 12px 50px 12px 13px; border-radius: 11px 11px 3px 11px; }
+  .mascot-guide { --guide-mascot-width: 90px; --guide-mascot-height: 94px; --guide-bubble-lift: 38px; --guide-tail-length: 30px; --guide-tail-width: 18px; --guide-tail-bottom: 9px; right: 8px; bottom: 78px; gap: 3px; }
+  .mascot-guide__bubble { width: min(218px, calc(100vw - 102px)); min-height: 0; padding: 12px 50px 12px 13px; border-radius: 11px 11px 3px 11px; }
   .mascot-guide__label { font-size: 8px; }
   .mascot-guide__bubble p { margin-top: 4px; font-size: 11px; line-height: 1.35; }
   .mascot-guide__bubble button { top: 2px; right: 2px; width: 44px; height: 44px; }
-  .mascot-guide__mascot { width: 70px; height: 80px; }
-  .desktop.guide-visible .window.is-focused .window__content { padding-bottom: 100px; }
+  .desktop.guide-visible .window.is-focused .window__content { padding-bottom: 170px; }
 }
 
 @media (max-width: 390px) {
